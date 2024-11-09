@@ -1,0 +1,10 @@
+{'gender': 'Male', 'age': 25, 'height_ft': 6, 'height_in': 0, 'weight_lbs': 250.0, 'target_weight_lbs': 180.0, 'duration_days': 30, 'weekly_frequency': 3}
+{'duration': 45, 'pace': '10\' 0" '}
+{'gender': 'Male', 'age': 25, 'height_ft': 6, 'height_in': 0, 'weight_lbs': 250.0, 'target_weight_lbs': 180.0, 'duration_days': 30, 'weekly_frequency': 3}
+{'duration': 45, 'pace': '10\' 0" '}
+{'gender': 'Male', 'age': 25, 'height_ft': 6, 'height_in': 0, 'weight_lbs': 250.0, 'target_weight_lbs': 180.0, 'duration_days': 30, 'weekly_frequency': 3}
+{'duration': 45, 'pace': '10\' 0" '}
+{'gender': 'Male', 'age': 25, 'height_ft': 6, 'height_in': 0, 'weight_lbs': 250.0, 'target_weight_lbs': 180.0, 'duration_days': 30, 'weekly_frequency': 3}
+{'duration': 45, 'pace': '10\' 0" '}
+{'gender': 'Male', 'age': 25, 'height_ft': 6, 'height_in': 0, 'weight_lbs': 250.0, 'target_weight_lbs': 180.0, 'duration_days': 30, 'weekly_frequency': 3}
+{'duration': 45, 'pace': '10\' 0" '}

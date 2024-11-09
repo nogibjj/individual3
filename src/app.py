@@ -51,7 +51,7 @@ def result():
     # Placeholder for results (replace with actual calculations later)
     result_data = {
         "duration": result_duration,   # Jogging duration per session in minutes
-        "pace": f"{result_pace[0]}\' {result_pace[1]}\" "  # Suggested pace per mile (minutes:seconds)
+        "pace": f"{result_pace[0]}' {result_pace[1]}\" "  # Suggested pace per mile (minutes:seconds)
     }
     # Logging the result
     save_data(result_data)
@@ -60,7 +60,7 @@ def result():
 # Save data function
 def save_data(data):
     # Save data to a file or database as needed (simple file save here)
-    with open('user_data.txt', 'a') as f:
+    with open('logging/user_data.txt', 'a') as f:
         f.write(str(data) + '\n')
 
 # Data validation function
