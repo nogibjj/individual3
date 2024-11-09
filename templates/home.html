@@ -5,16 +5,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <style>
-        body { display: flex; align-items: center; justify-content: center; height: 100vh; font-family: Arial, sans-serif; }
-        .container { text-align: center; }
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            max-width: 800px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 2em;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        a {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        a:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
     <div class="container">
+        <img src="{{ url_for('static', filename='HomePic.webp') }}" alt="Jogging Weight Loss Coach">
         <h1>Welcome to the Jogging Weight Loss Guide!</h1>
+        <br>
         <p>This is the Final Project for IDS706, Fall 24' at Duke University.</p>
-        <p>Hosted by Group 8: Su Zhang, Jaixin Cindy Gao, Xiangyu Wang, Haobo Yuan.</p>
-        <h2><a href="{{ url_for('input_data') }}">Start your journey!</a></h2>
+        <p>Hosted by Group 8: Su (Sue) Zhang, Jaixin (Cindy) Gao, Xiangyu (Sam) Wang, Haobo Yuan.</p>
+        <br>
+        <a href="{{ url_for('input_data') }}">Start your journey!</a>
     </div>
 </body>
 </html>
+
