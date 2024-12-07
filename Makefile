@@ -1,14 +1,19 @@
 install:
-	pip install --upgrade pip &&\
+	pip install --upgrade pip && \
 		pip install -r requirements.txt
 
 test:
-	# python -m pytest -vv --cov=main --cov-report=term-missing test_*.py
+	@FILES=$$(find . -name 'test_*.py'); \
+	if [ -n "$$FILES" ]; then \
+		python -m pytest -vv --cov=main --cov-report=term-missing $$FILES; \
+	else \
+		echo "No test_*.py files found, skipping tests."; \
+	fi
 
 format:
-	black *.py
+	black .
 
 lint:
-	pylint --disable=R,C main.py
+	find . -name '*.py' | xargs pylint --disable=R,C
 
 all: install lint test format

@@ -1,9 +1,9 @@
 from locust import HttpUser, between, task
 
-class WebsiteUser(HttpUser):
 
+class WebsiteUser(HttpUser):
     host = "https://crispy-space-spork-g457q5j94x643wj9q-5000.app.github.dev"
-    # wait_time = between(1, 5) 
+    # wait_time = between(1, 5)
 
     @task
     def home_page(self):
@@ -21,7 +21,7 @@ class WebsiteUser(HttpUser):
             "weight_lbs": 160.0,
             "target_weight_lbs": 140.0,
             "duration_days": 90,
-            "weekly_frequency": 4
+            "weekly_frequency": 4,
         }
         with self.client.post("/input", data=payload, catch_response=True) as response:
             if response.status_code == 200 and "error_message" not in response.text:
