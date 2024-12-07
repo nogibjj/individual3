@@ -4,13 +4,17 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -23,4 +27,17 @@ jobs:
 
       - name: Lint with pylint
         run: |
-          make lint
+          make pylint
+
+      - name: Lint with flake8
+        run: |
+          make flake8
+
+      - name: Format check with black
+        run: |
+          make black-check
+
+      - name: Import sorting check with isort
+        run: |
+          make isort-check
+
