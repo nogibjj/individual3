@@ -1,3 +1,8 @@
+![Install Dependencies](https://github.com/haobo-yuan/IDS706-FinalProject/actions/workflows/install.yml/badge.svg)
+![Lint Code](https://github.com/haobo-yuan/IDS706-FinalProject/actions/workflows/lint.yml/badge.svg)
+![Run Tests](https://github.com/haobo-yuan/IDS706-FinalProject/actions/workflows/test.yml/badge.svg)
+![Format Code](https://github.com/haobo-yuan/IDS706-FinalProject/actions/workflows/format.yml/badge.svg)
+
 # IDS706-FinalProject
 
 ## Quick View
