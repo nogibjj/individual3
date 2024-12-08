@@ -1,6 +1,7 @@
 install:
-	pip install --upgrade pip && \
-		pip install -r requirements.txt
+	python -m pip install --upgrade pip && \
+	python -m pip install -r requirements.txt
+
 
 test:
 	@FILES=$$(find . -name 'test_*.py'); \
@@ -11,9 +12,15 @@ test:
 	fi
 
 format:
-	black .
+	black --line-length 79 . && \
+	isort --profile black .
+
 
 lint:
+	@echo "Running pylint..."
 	find . -name '*.py' | xargs pylint --disable=R,C
 
-all: install lint test format
+	@echo "Running flake8..."
+	flake8 .
+
+all: install format lint test

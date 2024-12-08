@@ -1,16 +1,25 @@
-import pandas as pd
+"""
+This module trains a linear regression model to predict Estimated MET values
+and provides functions to calculate total calories to burn and exercise duration.
+"""
+
 import numpy as np
-from sklearn.model_selection import train_test_split
+import pandas as pd
 from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
 
 # Load dataset
 exercise_df = pd.read_csv(
-    "https://raw.githubusercontent.com/haobo-yuan/IDS706-FinalProject/main/exercise_dataset.csv"
+    "/Users/Cindy_ggjx/IDS706-FinalProject/IDS706-FinalProject/exercise_dataset.csv"
 )
 
 # Data preprocessing
-exercise_df.drop(columns=["ID", "Exercise", "Weather Conditions"], inplace=True)
-exercise_df["Height"] = np.sqrt(exercise_df["Actual Weight"] / exercise_df["BMI"])
+exercise_df.drop(
+    columns=["ID", "Exercise", "Weather Conditions"], inplace=True
+)
+exercise_df["Height"] = np.sqrt(
+    exercise_df["Actual Weight"] / exercise_df["BMI"]
+)
 
 exercise_df["Estimated MET"] = exercise_df.apply(
     lambda row: row["Calories Burn"]
@@ -22,7 +31,9 @@ exercise_df.dropna(inplace=True)
 exercise_df = pd.get_dummies(exercise_df, columns=["Gender"], drop_first=True)
 
 # Define features and target
-X = exercise_df[["Height", "Age", "Exercise Intensity", "Gender_Male", "Actual Weight"]]
+X = exercise_df[
+    ["Height", "Age", "Exercise Intensity", "Gender_Male", "Actual Weight"]
+]
 y = exercise_df["Estimated MET"]
 
 # Train-test split
@@ -51,8 +62,18 @@ print("\nLinear Regression Formula:")
 print(lr_formula)
 
 
-# Function to calculate total calories to burn
 def total_calories_to_burn(actual_weight, dream_weight):
+    """
+    Calculate the total calories needed to reach the dream weight.
+
+    Args:
+        actual_weight (float): The current weight in kilograms.
+        dream_weight (float): The desired weight in kilograms.
+
+    Returns:
+        float or str: The total calories to burn
+        or a message if no weight loss is needed.
+    """
     calories_per_kg = 7700
     weight_difference = actual_weight - dream_weight
     if weight_difference <= 0:
@@ -60,18 +81,38 @@ def total_calories_to_burn(actual_weight, dream_weight):
     return weight_difference * calories_per_kg
 
 
-# Function to calculate exercise duration
-def calculate_exercise_duration(
-    target_calories, height, age, exercise_intensity, gender, actual_weight
-):
-    gender_male = 1 if gender.lower() == "male" else 0
+def calculate_exercise_duration(params):
+    """
+    Calculate the required exercise duration to burn target calories.
+
+    Args:
+        params (dict): A dictionary containing the following keys:
+            - target_calories (float): The target calories to burn.
+            - height (float): The height in meters.
+            - age (int): The age in years.
+            - exercise_intensity (int): The exercise intensity level (1-10).
+            - gender (str): The gender ('Male' or 'Female').
+            - actual_weight (float): The actual weight in kilograms.
+
+    Returns:
+        tuple: The required exercise duration in minutes and the estimated MET value.
+
+    Raises:
+        ValueError: If the estimated MET is invalid
+        or exercise intensity is not in a valid range.
+    """
+    # Validate exercise intensity
+    if not (1 <= params["exercise_intensity"] <= 10):
+        raise ValueError("Exercise intensity must be between 1 and 10.")
+
+    gender_male = 1 if params["gender"].lower() == "male" else 0
     estimated_met = (
         intercept
-        + coefficients[0] * height
-        + coefficients[1] * age
-        + coefficients[2] * exercise_intensity
+        + coefficients[0] * params["height"]
+        + coefficients[1] * params["age"]
+        + coefficients[2] * params["exercise_intensity"]
         + coefficients[3] * gender_male
-        + coefficients[4] * actual_weight
+        + coefficients[4] * params["actual_weight"]
     )
 
     if estimated_met <= 0:
@@ -79,7 +120,7 @@ def calculate_exercise_duration(
             "Estimated MET value is invalid. Please check your input parameters."
         )
 
-    calorie_burn_rate = estimated_met * actual_weight * 0.0175
-    duration = target_calories / calorie_burn_rate
+    calorie_burn_rate = estimated_met * params["actual_weight"] * 0.0175
+    duration = params["target_calories"] / calorie_burn_rate
 
     return duration, estimated_met

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, redirect, render_template, request, url_for
 
 app = Flask(__name__)
 app.secret_key = "your_secret_key"
@@ -11,7 +11,10 @@ result_pace = [10, 0]  # min:sec
 # Home route
 @app.route("/")
 def home():
-    message = """Should there exist any problem, please contact the developer at: haobo.yuan@duke.edu"""
+    message = (
+        "Should there exist any problem, please contact the developer at: "
+        "haobo.yuan@duke.edu"
+    )
     return render_template("home.html", message=message)
 
 
@@ -27,7 +30,9 @@ def input_data():
                 "height_ft": int(request.form.get("height_ft")),
                 "height_in": int(request.form.get("height_in")),
                 "weight_lbs": float(request.form.get("weight_lbs")),
-                "target_weight_lbs": float(request.form.get("target_weight_lbs")),
+                "target_weight_lbs": float(
+                    request.form.get("target_weight_lbs")
+                ),
                 "duration_days": int(request.form.get("duration_days")),
                 "weekly_frequency": int(request.form.get("weekly_frequency")),
             }
@@ -35,7 +40,9 @@ def input_data():
             # Validate inputs
             error_message = validate_data(data)
             if error_message:
-                return render_template("input.html", error_message=error_message)
+                return render_template(
+                    "input.html", error_message=error_message
+                )
 
             # Logging the data
             save_data(data)
@@ -44,7 +51,8 @@ def input_data():
         except ValueError:
             # Handle any conversion errors
             return render_template(
-                "input.html", error_message="Please enter valid numeric values."
+                "input.html",
+                error_message="Please enter valid numeric values.",
             )
 
     return render_template("input.html")
@@ -56,7 +64,8 @@ def result():
     # Placeholder for results (replace with actual calculations later)
     result_data = {
         "duration": result_duration,  # Jogging duration per session in minutes
-        "pace": f"{result_pace[0]}' {result_pace[1]}\" ",  # Suggested pace per mile (minutes:seconds)
+        "pace": f"{result_pace[0]}' {result_pace[1]}\" ",
+        # Suggested pace per mile (minutes:seconds)
     }
     # Logging the result
     save_data(result_data)
@@ -87,7 +96,9 @@ def validate_data(data):
     if data["weekly_frequency"] <= 0 or data["weekly_frequency"] > 7:
         return "Workout frequency must be between 1 and 7 days per week."
     if data["weight_lbs"] <= data["target_weight_lbs"]:
-        return "Target weight must be less than current weight for weight loss."
+        return (
+            "Target weight must be less than current weight for weight loss."
+        )
     return None
 
 

@@ -23,11 +23,18 @@ class WebsiteUser(HttpUser):
             "duration_days": 90,
             "weekly_frequency": 4,
         }
-        with self.client.post("/input", data=payload, catch_response=True) as response:
-            if response.status_code == 200 and "error_message" not in response.text:
+        with self.client.post(
+            "/input", data=payload, catch_response=True
+        ) as response:
+            if (
+                response.status_code == 200
+                and "error_message" not in response.text
+            ):
                 response.success()
             else:
-                response.failure("Input validation failed or error message displayed.")
+                response.failure(
+                    "Input validation failed or error message displayed."
+                )
 
     @task
     def result_page(self):
