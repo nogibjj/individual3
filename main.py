@@ -10,7 +10,7 @@ from sklearn.model_selection import train_test_split
 
 # Load dataset
 exercise_df = pd.read_csv(
-    "/Users/Cindy_ggjx/IDS706-FinalProject/IDS706-FinalProject/exercise_dataset.csv"
+    "exercise_dataset.csv"
 )
 
 # Data preprocessing
