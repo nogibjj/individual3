@@ -1,6 +1,6 @@
 import unittest
 
-from main import calculate_exercise_duration, total_calories_to_burn
+from src.main import calculate_exercise_duration, total_calories_to_burn
 
 
 class TestWeightLossFunctions(unittest.TestCase):
