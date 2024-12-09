@@ -1,6 +1,5 @@
-import unittest
-
 from src.main import calculate_target_calories_and_duration, total_calories_to_burn
+import unittest
 
 
 class TestMainModule(unittest.TestCase):
