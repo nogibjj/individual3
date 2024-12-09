@@ -4,7 +4,7 @@ install:
 
 pylint:
 	@echo "Running pylint..."
-    pylint --disable=astroid-error src/
+	pylint --disable=astroid-error src/
 
 flake8:
 	@echo "Running flake8..."
