@@ -25,4 +25,8 @@ format:
 
 lint: pylint flake8 black-check isort-check
 
+test:
+	@echo "Running tests with pytest..."
+	pytest
+
 all: install format lint test

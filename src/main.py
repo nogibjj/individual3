@@ -9,9 +9,10 @@ from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 
 # Load dataset
-exercise_df = pd.read_csv(
-    "https://raw.githubusercontent.com/haobo-yuan/IDS706-FinalProject/refs/heads/main/exercise_dataset.csv"
-)
+url = ("https://raw.githubusercontent.com/haobo-yuan/"
+       "IDS706-FinalProject/refs/heads/main/exercise_dataset.csv")
+
+exercise_df = pd.read_csv(url)
 
 # Data preprocessing
 exercise_df.drop(
