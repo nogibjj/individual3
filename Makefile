@@ -1,26 +1,28 @@
 install:
-	python -m pip install --upgrade pip && \
-	python -m pip install -r requirements.txt
+	pip install --upgrade pip && \
+		pip install -r requirements.txt
 
-
-test:
-	@FILES=$$(find . -name 'test_*.py'); \
-	if [ -n "$$FILES" ]; then \
-		python -m pytest -vv --cov=main --cov-report=term-missing $$FILES; \
-	else \
-		echo "No test_*.py files found, skipping tests."; \
-	fi
-
-format:
-	black --line-length 79 . && \
-	isort --profile black .
-
-
-lint:
+pylint:
 	@echo "Running pylint..."
 	find . -name '*.py' | xargs pylint --disable=R,C
 
+flake8:
 	@echo "Running flake8..."
 	flake8 .
+
+black-check:
+	@echo "Running black check..."
+	black --check .
+
+isort-check:
+	@echo "Running isort check..."
+	isort --check-only .
+
+format:
+	@echo "Running black and isort to format code..."
+	black . && \
+	isort .
+
+lint: pylint flake8 black-check isort-check
 
 all: install format lint test
