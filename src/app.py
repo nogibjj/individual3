@@ -30,9 +30,7 @@ def input_data():
                 "height_ft": int(request.form.get("height_ft")),
                 "height_in": int(request.form.get("height_in")),
                 "weight_lbs": float(request.form.get("weight_lbs")),
-                "target_weight_lbs": float(
-                    request.form.get("target_weight_lbs")
-                ),
+                "target_weight_lbs": float(request.form.get("target_weight_lbs")),
                 "duration_days": int(request.form.get("duration_days")),
                 "weekly_frequency": int(request.form.get("weekly_frequency")),
             }
@@ -40,9 +38,7 @@ def input_data():
             # Validate inputs
             error_message = validate_data(data)
             if error_message:
-                return render_template(
-                    "input.html", error_message=error_message
-                )
+                return render_template("input.html", error_message=error_message)
 
             # Logging the data
             save_data(data)
@@ -96,9 +92,7 @@ def validate_data(data):
     if data["weekly_frequency"] <= 0 or data["weekly_frequency"] > 7:
         return "Workout frequency must be between 1 and 7 days per week."
     if data["weight_lbs"] <= data["target_weight_lbs"]:
-        return (
-            "Target weight must be less than current weight for weight loss."
-        )
+        return "Target weight must be less than current weight for weight loss."
     return None
 
 

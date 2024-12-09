@@ -4,7 +4,7 @@ install:
 
 pylint:
 	@echo "Running pylint..."
-	find . -name '*.py' | xargs pylint --disable=R,C
+	pylint src tests --disable=R,C
 
 flake8:
 	@echo "Running flake8..."
