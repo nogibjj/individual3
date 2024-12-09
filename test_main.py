@@ -100,14 +100,13 @@ class TestWeightLossFunctions(unittest.TestCase):
 
         params = {
             "target_calories": target_calories,
-            "height": 1.75,
-            "age": 27,
+            "height": 0.5,           # Use small values to make estimated_met negative
+            "age": 100,
             "exercise_intensity": 1,
             "gender": "Male",
             "actual_weight": actual_weight
         }
 
-        # Force the Estimated MET to be a negative value to trigger an exception
         with self.assertRaises(ValueError):
             calculate_exercise_duration(params)
 

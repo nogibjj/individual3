@@ -70,7 +70,8 @@ def total_calories_to_burn(actual_weight, dream_weight):
         dream_weight (float): The desired weight in kilograms.
 
     Returns:
-        float or str: The total calories to burn or a message if no weight loss is needed.
+        float or str: The total calories to burn 
+        or a message if no weight loss is needed.
     """
     calories_per_kg = 7700
     weight_difference = actual_weight - dream_weight
@@ -116,7 +117,8 @@ def calculate_exercise_duration(params):
         tuple: The required exercise duration in minutes and the estimated MET value.
 
     Raises:
-        ValueError: If the estimated MET is invalid or exercise intensity is not valid.
+        ValueError: If the estimated MET is invalid 
+        or exercise intensity is not valid.
     """
     # Validate exercise intensity
     if not (1 <= params["exercise_intensity"] <= 10):
