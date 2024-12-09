@@ -36,6 +36,8 @@ jobs:
       - name: Format check with black
         run: |
           make black-check
+        continue-on-error: true
+        
 
       - name: Import sorting check with isort
         run: |

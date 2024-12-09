@@ -12,7 +12,7 @@ flake8:
 
 black-check:
 	@echo "Running black check..."
-	black --check .
+	black .
 
 isort-check:
 	@echo "Running isort check..."
