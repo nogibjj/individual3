@@ -1,5 +1,4 @@
 import unittest
-
 from src.main import (
     total_calories_to_burn,
     calculate_target_calories,
@@ -27,7 +26,7 @@ class TestWeightLossFunctions(unittest.TestCase):
         dream_weight = 65
         num_of_weeks = 4
         week_frequency = 3
-        expected_target_calories = 321.25  # 38500 / (4 * 3)
+        expected_target_calories = 38500 / (4 * 3)  # 38500 / (4 * 3)
         result = calculate_target_calories(actual_weight, dream_weight, num_of_weeks, week_frequency)
         self.assertAlmostEqual(result, expected_target_calories, places=2)
 
@@ -49,7 +48,7 @@ class TestWeightLossFunctions(unittest.TestCase):
         num_of_weeks = 4
         week_frequency = 3
 
-        # Calculate target calories
+        # Dynamically calculate target calories
         target_calories = calculate_target_calories(actual_weight, dream_weight, num_of_weeks, week_frequency)
 
         params = {
@@ -74,7 +73,7 @@ class TestWeightLossFunctions(unittest.TestCase):
         num_of_weeks = 4
         week_frequency = 3
 
-        # Calculate target calories
+        # Dynamically calculate target calories
         target_calories = calculate_target_calories(actual_weight, dream_weight, num_of_weeks, week_frequency)
 
         params = {
@@ -96,7 +95,7 @@ class TestWeightLossFunctions(unittest.TestCase):
         num_of_weeks = 4
         week_frequency = 3
 
-        # Calculate target calories
+        # Dynamically calculate target calories
         target_calories = calculate_target_calories(actual_weight, dream_weight, num_of_weeks, week_frequency)
 
         params = {

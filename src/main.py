@@ -9,22 +9,20 @@ from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 
 # Load dataset
-url = ("https://raw.githubusercontent.com/haobo-yuan/"
-       "IDS706-FinalProject/refs/heads/main/exercise_dataset.csv")
+url = (
+    "https://raw.githubusercontent.com/haobo-yuan/"
+    "IDS706-FinalProject/refs/heads/main/exercise_dataset.csv"
+)
 
 exercise_df = pd.read_csv(url)
 
 # Data preprocessing
-exercise_df.drop(
-    columns=["ID", "Exercise", "Weather Conditions"], inplace=True
-)
-exercise_df["Height"] = np.sqrt(
-    exercise_df["Actual Weight"] / exercise_df["BMI"]
-)
+exercise_df.drop(columns=["ID", "Exercise", "Weather Conditions"], inplace=True)
+exercise_df["Height"] = np.sqrt(exercise_df["Actual Weight"] / exercise_df["BMI"])
 
 exercise_df["Estimated MET"] = exercise_df.apply(
-    lambda row: row["Calories Burn"]
-    / (row["Actual Weight"] * row["Duration"] * 0.0175),
+    lambda row: row["Calories Burn"] /
+    (row["Actual Weight"] * row["Duration"] * 0.0175),
     axis=1,
 )
 
@@ -72,8 +70,7 @@ def total_calories_to_burn(actual_weight, dream_weight):
         dream_weight (float): The desired weight in kilograms.
 
     Returns:
-        float or str: The total calories to burn
-        or a message if no weight loss is needed.
+        float or str: The total calories to burn or a message if no weight loss is needed.
     """
     calories_per_kg = 7700
     weight_difference = actual_weight - dream_weight
@@ -82,17 +79,15 @@ def total_calories_to_burn(actual_weight, dream_weight):
     return weight_difference * calories_per_kg
 
 
-
 def calculate_target_calories(actual_weight, dream_weight, num_of_weeks, week_frequency):
     """
-    Calculate the target calories to burn per session based on weight loss goal,
-    weekly sessions, and session duration.
+    Calculate the target calories to burn per session based on weight loss goal.
 
     Args:
         actual_weight (float): The current weight in kilograms.
         dream_weight (float): The desired weight in kilograms.
-        weekly_sessions (int): The number of exercise sessions per week.
-        session_duration (float): The duration of each session in minutes.
+        num_of_weeks (int): The number of weeks to achieve the goal.
+        week_frequency (int): The number of exercise sessions per week.
 
     Returns:
         float or str: The target calories to burn per session,
@@ -102,7 +97,6 @@ def calculate_target_calories(actual_weight, dream_weight, num_of_weeks, week_fr
     if isinstance(total_calories, str):
         return total_calories
     return total_calories / (num_of_weeks * week_frequency)
-
 
 
 def calculate_exercise_duration(params):
@@ -122,8 +116,7 @@ def calculate_exercise_duration(params):
         tuple: The required exercise duration in minutes and the estimated MET value.
 
     Raises:
-        ValueError: If the estimated MET is invalid
-        or exercise intensity is not in a valid range.
+        ValueError: If the estimated MET is invalid or exercise intensity is not valid.
     """
     # Validate exercise intensity
     if not (1 <= params["exercise_intensity"] <= 10):
@@ -148,3 +141,4 @@ def calculate_exercise_duration(params):
     duration = params["target_calories"] / calorie_burn_rate
 
     return duration, estimated_met
+
