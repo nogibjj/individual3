@@ -1,0 +1,51 @@
+name: Locust Performance Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  performance-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Set Up Python Environment
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.8"
+
+    - name: Install Dependencies
+      run: |
+        python -m venv venv
+        source venv/bin/activate
+        pip install --upgrade pip
+        pip install locust flask
+
+    - name: Start Flask App
+      run: |
+        source venv/bin/activate
+        nohup python app.py &  # 启动 Flask 应用，确保它运行在后台
+
+    - name: Run Locust Performance Test
+      run: |
+        source venv/bin/activate
+        locust --headless \
+               --host=http://localhost:8080 \
+               --users=100 \
+               --spawn-rate=10 \
+               --run-time=1m \
+               --csv=locust_report
+
+    - name: Upload Locust Test Results
+      uses: actions/upload-artifact@v3
+      with:
+        name: locust-reports
+        path: locust_report*
