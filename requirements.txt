@@ -18,7 +18,7 @@ flask==3.0.3
 
 ## data
 pandas==2.0.3
-numpy==1.26.4
+numpy==1.24.3
 scikit-learn==1.3.2
 
 ## Load Testing
