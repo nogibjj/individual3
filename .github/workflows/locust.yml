@@ -32,8 +32,8 @@ jobs:
     - name: Start Flask App
       run: |
         source venv/bin/activate
-        nohup python app.py &  # 启动 Flask 服务
-        sleep 15
+        nohup python src/app.py & 
+        sleep 20
 
     - name: Verify Flask Service
       run: |
