@@ -1,5 +1,6 @@
 from locust import HttpUser, task, between
 
+
 class WebsiteUser(HttpUser):
     wait_time = between(1, 3)  # Simulates user wait time between requests
     host = "http://localhost:8080"  # Base host of the app
@@ -24,7 +25,6 @@ class WebsiteUser(HttpUser):
             "exercise_intensity": 2,
         }
         response = self.client.post("/input", data=payload)
-        
         if response.status_code == 200:
             # Fetch the result page if form submission was successful
             self.client.get("/result")

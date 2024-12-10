@@ -33,7 +33,7 @@ jobs:
       run: |
         source venv/bin/activate
         nohup python app.py &  # 启动 Flask 服务
-        sleep 5  # 等待服务启动完成
+        sleep 15
 
     - name: Verify Flask Service
       run: |
