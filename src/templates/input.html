@@ -5,15 +5,102 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enter Your Information</title>
     <style>
-        body { display: flex; align-items: center; justify-content: center; height: 100vh; font-family: Arial, sans-serif; background-color: #f8f9fa; }
-        .container { text-align: center; max-width: 400px; width: 100%; padding: 20px; background: #fff; border-radius: 8px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); }
-        label, select, input { display: block; width: 100%; margin-bottom: 10px; font-size: 16px; }
-        .height-input { display: flex; align-items: center; justify-content: center; margin-bottom: 15px; }
-        .height-input input { width: 60px; text-align: center; margin: 0 5px; }
-        .height-input span { font-size: 16px; margin-left: 5px; margin-right: 5px; display: inline-block; vertical-align: middle; }
-        button { padding: 10px 20px; font-size: 16px; color: white; background-color: #007bff; border: none; border-radius: 5px; cursor: pointer; }
-        button:hover { background-color: #0056b3; }
-        .error { color: red; font-size: 14px; }
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        label, select, input {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        select:invalid {
+            color: gray; /* default color */
+        }
+        option {
+            color: black;
+        }
+        .height-input {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .height-input input {
+            width: 60px;
+            text-align: center;
+        }
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            color: #007bff;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 250px;
+            background-color: #f8f9fa;
+            color: #333;
+            text-align: center;
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            position: absolute;
+            z-index: 1;
+            bottom: 150%; /* 调整显示位置 */
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            font-size: 14px;
+        }
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+        /* 默认灰色样式 */
+        .input-gray {
+            color: gray; /* 默认颜色为灰色 */
+        }
+        /* 当用户输入后变为黑色 */
+        .input-gray:focus, 
+        .input-gray:not(:placeholder-shown) {
+            color: black; /* 输入后颜色变为黑色 */
+        }
     </style>
 </head>
 <body>
@@ -25,33 +112,42 @@
         <form action="{{ url_for('input_data') }}" method="post">
             <label for="gender">Gender:</label>
             <select id="gender" name="gender" required>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Prefer not to say">Prefer not to say</option>
+                <option value="" disabled selected hidden style="color: gray;">Select your gender</option>
+                <option value="Male" style="color: black;">Male</option>
+                <option value="Female" style="color: black;">Female</option>
             </select>
 
             <label for="age">Age:</label>
-            <input type="number" id="age" name="age" value="25" min="10" max="100" required>
+            <input type="number" id="age" name="age" value="25" min="10" max="100" class="input-gray" required>
 
             <label for="height">Height:</label>
             <div class="height-input">
-                <input type="number" id="height_ft" name="height_ft" value="6" min="1" max="8" required>
-                <span>ft</span>
-                <input type="number" id="height_in" name="height_in" value="0" min="0" max="11" required>
-                <span>in</span>
+                <input type="number" id="height_ft" name="height_ft" value="6" min="1" max="8" class="input-gray" required>
+                <label for="height_ft">ft</label>
+                <input type="number" id="height_in" name="height_in" value="0" min="0" max="11" class="input-gray" required>
+                <label for="height_in">in</label>
             </div>
 
             <label for="weight_lbs">Current Weight (lbs):</label>
-            <input type="number" id="weight_lbs" name="weight_lbs" value="250" min="50" max="500" required>
+            <input type="number" id="weight_lbs" name="weight_lbs" value="190" min="50" max="500" class="input-gray" required>
 
             <label for="target_weight_lbs">Target Weight (lbs):</label>
-            <input type="number" id="target_weight_lbs" name="target_weight_lbs" value="180" min="50" max="500" required>
+            <input type="number" id="target_weight_lbs" name="target_weight_lbs" value="180" min="50" max="500" class="input-gray" required>
 
-            <label for="duration_days">Duration (days):</label>
-            <input type="number" id="duration_days" name="duration_days" value="30" min="7" max="365" required>
+            <label for="num_of_weeks">Duration (weeks):</label>
+            <input type="number" id="num_of_weeks" name="num_of_weeks" value="12" min="1" max="52" class="input-gray" required>
 
             <label for="weekly_frequency">Workout Frequency (days per week):</label>
-            <input type="number" id="weekly_frequency" name="weekly_frequency" value="3" min="1" max="7" required>
+            <input type="number" id="weekly_frequency" name="weekly_frequency" value="5" min="1" max="7" class="input-gray" required>
+
+            <label for="exercise_intensity">
+                Exercise Intensity (1-10):
+                <span class="tooltip">
+                    &#x3F;
+                    <span class="tooltiptext">Input a number between 1 (low intensity) and 10 (high intensity).</span>
+                </span>
+            </label>
+            <input type="number" id="exercise_intensity" name="exercise_intensity" value="8" min="1" max="10" class="input-gray" required>
 
             <button type="submit">Submit</button>
         </form>

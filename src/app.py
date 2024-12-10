@@ -1,7 +1,8 @@
-from flask import Flask, redirect, render_template, request, url_for
+from flask import Flask, redirect, render_template, request, url_for, session
+from main import calculate_target_calories_and_duration
 
 app = Flask(__name__)
-app.secret_key = "your_secret_key"
+app.secret_key = "haobo.yuan@duke.edu"
 
 # Global variables
 result_duration = 45  # min
@@ -18,53 +19,45 @@ def home():
     return render_template("home.html", message=message)
 
 
-# Input route with validation
+# Input route
 @app.route("/input", methods=["GET", "POST"])
 def input_data():
     if request.method == "POST":
-        # Retrieve user inputs and perform validation
         try:
-            data = {
+            height_meters = float(request.form.get("height_ft")) * 0.3048 + \
+                float(request.form.get("height_in")) * 0.0254
+            params = {
                 "gender": request.form.get("gender"),
                 "age": int(request.form.get("age")),
-                "height_ft": int(request.form.get("height_ft")),
-                "height_in": int(request.form.get("height_in")),
-                "weight_lbs": float(request.form.get("weight_lbs")),
-                "target_weight_lbs": float(request.form.get("target_weight_lbs")),
-                "duration_days": int(request.form.get("duration_days")),
-                "weekly_frequency": int(request.form.get("weekly_frequency")),
+                "height": height_meters,
+                "actual_weight": float(request.form.get("weight_lbs")) * 0.453592,
+                "dream_weight": float(request.form.get("target_weight_lbs")) * 0.453592,
+                "num_of_weeks": int(request.form.get("num_of_weeks")),
+                "week_frequency": int(request.form.get("weekly_frequency")),
+                "exercise_intensity": int(request.form.get("exercise_intensity")),
             }
-
-            # Validate inputs
-            error_message = validate_data(data)
-            if error_message:
-                return render_template("input.html", error_message=error_message)
-
-            # Logging the data
-            save_data(data)
+            result = calculate_target_calories_and_duration(params)
+            if isinstance(result, str):
+                return render_template("input.html", error_message=result)
+            session["result"] = {
+                "target_calories": round(result[0]),
+                "duration": round(result[1]),
+                "estimated_met": round(result[2], 1)  # keep one decimal
+            }
             return redirect(url_for("result"))
-
-        except ValueError:
-            # Handle any conversion errors
-            return render_template(
-                "input.html",
-                error_message="Please enter valid numeric values.",
-            )
-
+        except Exception as e:
+            return render_template("input.html", error_message=e)
     return render_template("input.html")
 
 
 # Result route
 @app.route("/result")
 def result():
-    # Placeholder for results (replace with actual calculations later)
-    result_data = {
-        "duration": result_duration,  # Jogging duration per session in minutes
-        "pace": f"{result_pace[0]}' {result_pace[1]}\" ",
-        # Suggested pace per mile (minutes:seconds)
-    }
-    # Logging the result
-    save_data(result_data)
+    result_data = session.get("result", None)
+    if not result_data:
+        print("Result data is missing.")
+        return redirect(url_for("input_data"))
+
     return render_template("result.html", result=result_data)
 
 

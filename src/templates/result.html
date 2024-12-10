@@ -50,14 +50,32 @@
         a:hover {
             background-color: #0056b3;
         }
+        .note {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 20px;
+            text-align: justify;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <img src="{{ url_for('static', filename='HomePic.webp') }}" alt="Jogging Weight Loss Coach">
         <h2>Your Jogging Plan</h2>
-        <p>Duration per Session: <strong>{{ result.duration }} minutes</strong></p>
-        <p>Suggested Pace: <strong>{{ result.pace }}</strong></p>
+        <p><strong>Target Calories to Burn Per Session:</strong> {{ result.target_calories }} kcal</p>
+        <p><strong>Duration Per Session:</strong> {{ result.duration }} minutes</p>
+        <p><strong>Estimated MET Value (exercise intensity 1-10):</strong> {{ result.estimated_met }}</p>
+        <div class="note">
+            <p>
+                The calculated results are based on data analysis from nearly 1,000 individuals and should be used as a reference only, as weight changes vary by individual. 
+            </p>
+            <p>
+                The calculations assume that your weight remains stable over the observed period, meaning your daily calorie intake aligns with your basal metabolic rate plus daily activity expenditure.
+            </p>
+            <p>
+                To achieve your weight loss goals more efficiently, consider adjusting your dietary structure and moderately reducing calorie intake while maintaining your fitness routine.
+            </p>
+        </div>
         <br>
         <a href="{{ url_for('home') }}">Back to Home</a>
     </div>

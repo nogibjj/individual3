@@ -11,14 +11,22 @@
 
 This project implements a microservice using Flask to help users calculate their expected calories burned per jogging session, the duration of jogging sessions, and the estimated MET (Metabolic Equivalent of Task) level based on user input. The microservice interfaces with a data pipeline and provides detailed, personalized fitness insights.
 
+## Quick View
+Home Page:
+![Home Screenshot](readme_components/Home.png)
+
+Input Page:
+![Input Screenshot](readme_components/Input.png)
+
+Output Page:
+![Output Screenshot](readme_components/Result.png)
+
 
 ## Features
 
 - **Calculate Calories Burned per Session:** Estimate the calories burned based on the user's current weight, desired weight, time frame, and exercise frequency.
 - **Calculate Duration of Jogging Sessions:** Suggest the optimal duration per session to achieve the target weight.
 - **Estimate MET Level:** Provide the expected MET level based on user characteristics and exercise intensity.
-
----
 
 ## User Inputs
 
@@ -70,6 +78,14 @@ The application requires the following inputs from the user:
 
 ```
 
+## Running the Application locally
+
+```bash
+git clone https://github.com/haobo-yuan/IDS706-FinalProject.git
+cd IDS706-FinalProject
+pip install -r requirements.txt
+python src/app.py
+```
 ---
 
 ## Functions in `main.py`
@@ -132,20 +148,9 @@ pytest
    make all
    ```
 
----
 
+## Containerization with Distroless
 
-## Quick View
-Home Page:
-![Home Screenshot](readme_components/Home.png)
-
-Input Page:
-![Input Screenshot](readme_components/Input.png)
-
-Output Page:
-![Output Screenshot](readme_components/Result.png)
-
-## distroless
 ```bash
 docker build -t your-app:latest .
 
