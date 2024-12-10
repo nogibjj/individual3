@@ -2,6 +2,7 @@
 ![Lint Code](https://github.com/haobo-yuan/IDS706-FinalProject/actions/workflows/lint.yml/badge.svg)
 ![Run Tests](https://github.com/haobo-yuan/IDS706-FinalProject/actions/workflows/test.yml/badge.svg)
 ![Format Code](https://github.com/haobo-yuan/IDS706-FinalProject/actions/workflows/format.yml/badge.svg)
+[![Locust Performance Test](https://github.com/haobo-yuan/IDS706-FinalProject/actions/workflows/locust.yml/badge.svg)](https://github.com/haobo-yuan/IDS706-FinalProject/actions/workflows/locust.yml)
 
 # IDS706 Final Project
 

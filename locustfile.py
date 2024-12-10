@@ -8,7 +8,7 @@ class WebsiteUser(HttpUser):
     def load_homepage(self):
         # Test the home route
         self.client.get("/")
-    
+
     @task(3)
     def submit_input_and_get_result(self):
         # Simulate user filling the form and submitting it

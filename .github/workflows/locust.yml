@@ -32,7 +32,12 @@ jobs:
     - name: Start Flask App
       run: |
         source venv/bin/activate
-        nohup python app.py &  # 启动 Flask 应用，确保它运行在后台
+        nohup python app.py &  # 启动 Flask 服务
+        sleep 5  # 等待服务启动完成
+
+    - name: Verify Flask Service
+      run: |
+        curl --retry 5 --retry-delay 2 --retry-connrefused http://localhost:8080
 
     - name: Run Locust Performance Test
       run: |
