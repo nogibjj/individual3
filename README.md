@@ -218,7 +218,22 @@ To address these limitations and enhance user experience, the following improvem
 - **Integrate with Health Ecosystems**: Develop APIs for integration with wearable devices (e.g., Fitbit, Apple Watch) or health apps, enabling automatic tracking of activity metrics such as heart rate and step count.
 - **Enhance Personalization**: Utilize machine learning models to personalize MET and calorie estimations based on detailed physiological profiles, including basal metabolic rate, body composition, and past exercise data.
 
-### AI Applications:
+### AI Application Tools in Development
+During the development of the **Jogging Weight Loss Guide** project, we used **GitHub Copilot**, **Tabnine**, and **ChatGPT** to boost productivity and improve code quality:
+
+- **GitHub Copilot**:  
+  - **Code Completion**: Helped write Flask routes and function skeletons.  
+  - **Debugging**: Suggested fixes for errors and logic issues.
+
+- **Tabnine**:  
+  - **Smart Suggestions**: Provided context-aware code predictions.  
+  - **Optimization**: Improved data processing and looping efficiency.  
+  - **Documentation**: Generated helpful comments and docstrings.
+
+- **ChatGPT**:  
+  - **Algorithm Help**: Assisted with MET and calorie calculation logic.  
+  - **Debugging**: Provided step-by-step solutions for complex errors.  
+  - **Refactoring**: Suggested cleaner, more efficient code structures.
 
 
 ### Collaborative Task Allocation
