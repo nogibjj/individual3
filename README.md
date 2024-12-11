@@ -225,11 +225,6 @@ During the development of the **Jogging Weight Loss Guide** project, we used **G
   - **Code Completion**: Helped write Flask routes and function skeletons.  
   - **Debugging**: Suggested fixes for errors and logic issues.
 
-- **Tabnine**:  
-  - **Smart Suggestions**: Provided context-aware code predictions.  
-  - **Optimization**: Improved data processing and looping efficiency.  
-  - **Documentation**: Generated helpful comments and docstrings.
-
 - **ChatGPT**:  
   - **Algorithm Help**: Assisted with MET and calorie calculation logic.  
   - **Debugging**: Provided step-by-step solutions for complex errors.  
