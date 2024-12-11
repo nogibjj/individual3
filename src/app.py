@@ -26,6 +26,7 @@ def home():
 def health_check():
     return "OK"
 
+
 # Input route
 @app.route("/input", methods=["GET", "POST"])
 def input_data():
