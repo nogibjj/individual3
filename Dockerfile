@@ -5,14 +5,14 @@
 ###################################
 FROM python:3.11-slim AS builder
 
-# 设置工作目录为 /app
+# set work directory
 WORKDIR /app
 
-# 复制 requirements.txt 并安装依赖
+# copy requirements.txt and install dependencies
 COPY requirements.txt ./
 RUN pip install --no-cache-dir --target /app/deps -r requirements.txt
 
-# 复制所有源代码到 /app/src
+# copy all source code to /app/src
 COPY src/ /app/src
 
 ###################################
@@ -20,16 +20,16 @@ COPY src/ /app/src
 ###################################
 FROM python:3.11-slim
 
-# 设置工作目录为 /app
+# set work directory
 WORKDIR /app
 
-# 从 builder 阶段复制依赖和源代码
+# copy dependencies and source code from builder stage
 COPY --from=builder /app/deps /app/deps
 COPY --from=builder /app/src /app/src
 
-# 设置环境变量和 PYTHONPATH
+# set environment variables and PYTHONPATH
 ENV PYTHONPATH=/app/deps
 EXPOSE 8080
 
-# 启动 Flask 应用
+# run Flask app
 CMD ["python3", "/app/src/app.py"]

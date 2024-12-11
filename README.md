@@ -79,6 +79,10 @@ The application requires the following inputs from the user:
 
 ```
 
+## Project Roadmap
+
+![Project Roadmap](readme_components/drawio.png)
+
 ## Running the Application locally
 
 ```bash
