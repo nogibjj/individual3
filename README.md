@@ -129,22 +129,27 @@ pytest
 
 ## Development Workflow
 
-1. **Linting**: Ensure code quality with:
+1. **Lint**: Ensure code quality with:
    ```bash
    make lint
    ```
 
-2. **Formatting**: Format code using `black`:
+2. **Format**: Format code using `black`:
    ```bash
    make format
    ```
 
-3. **Testing**: Run tests to ensure functionality:
+3. **Test**: Run tests to ensure functionality:
    ```bash
    make test
    ```
 
-4. **Full Build**: Install dependencies, format, lint, and test:
+4. **Locust_Test**: Run Locust performance test:
+   ```bash
+   make locust_test
+   ```
+
+5. **Full Build**: Install dependencies, format, lint, and test:
    ```bash
    make all
    ```
@@ -163,10 +168,26 @@ Access the application at:
 docker build successfully:
 ![distroless Screenshot](readme_components/distroless_docker_build_successfully.png)
 
-## Locust Test
+## Load Test - Locust Performance Test
 Aiming to the service provided by app.py, locust the core function to execute the performance test. 
 <img width="1375" alt="image" src="https://github.com/user-attachments/assets/9fc99c03-60cf-492a-b4af-bca86405cc54">
 
 The Report could be checked [HERE](readme_components/Locust.pdf). 
 
+# Project Limitations and Potential Areas of Improvement
 
+### Limitations
+The current version of the **Jogging Session Calculator Microservice** provides basic functionality for estimating calories burned, jogging duration, and MET levels, but it has several limitations that could impact its utility and user satisfaction:
+
+- **Limited Scope of Exercise Types**: The application is tailored specifically for jogging and does not accommodate other forms of exercise or physical activity, which may reduce its relevance for users with varied fitness routines.
+- **Lack of Real-Time Adaptation**: The tool does not dynamically adjust recommendations based on progress updates, such as changes in weight, fitness level, or jogging frequency.
+- **No Integration with Wearables or Health Apps**: The microservice lacks integration with fitness wearables or apps, which limits its ability to automatically track user activity or provide real-time feedback.
+- **Static Input Parameters**: The application assumes fixed parameters (e.g., weight, height, gender) without accounting for physiological variations such as muscle mass or metabolic rate that could influence calorie calculations.
+
+### Potential Improvements
+To address these limitations and enhance user experience, the following improvements could be made to the microservice:
+
+- **Incorporate Additional Activities**: Expand the microservice to support a variety of physical activities, including cycling, swimming, or strength training, to cater to diverse fitness preferences.
+- **Enable Progress Tracking**: Introduce functionality to allow users to log ongoing progress and receive updated recommendations based on their performance and evolving fitness levels.
+- **Integrate with Health Ecosystems**: Develop APIs for integration with wearable devices (e.g., Fitbit, Apple Watch) or health apps, enabling automatic tracking of activity metrics such as heart rate and step count.
+- **Enhance Personalization**: Utilize machine learning models to personalize MET and calorie estimations based on detailed physiological profiles, including basal metabolic rate, body composition, and past exercise data.
