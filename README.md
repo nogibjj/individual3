@@ -167,6 +167,6 @@ docker build successfully:
 Aiming to the service provided by app.py, locust the core function to execute the performance test. 
 <img width="1375" alt="image" src="https://github.com/user-attachments/assets/9fc99c03-60cf-492a-b4af-bca86405cc54">
 
-The Report could be checked ![HERE](readme_components/Locust.pdf). 
+The Report could be checked [HERE](readme_components/Locust.pdf). 
 
 
