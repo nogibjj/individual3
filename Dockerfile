@@ -3,39 +3,33 @@
 ###################################
 # Stage 1: Builder
 ###################################
-# Use an official Python image for building and installing dependencies
 FROM python:3.11-slim AS builder
 
-# Set the working directory
+# 设置工作目录为 /app
 WORKDIR /app
 
-# Copy requirements.txt to install dependencies
+# 复制 requirements.txt 并安装依赖
 COPY requirements.txt ./
-
-# Install dependencies into a dedicated directory using --target
 RUN pip install --no-cache-dir --target /app/deps -r requirements.txt
 
-# Copy the application source code
-COPY src/ src/
+# 复制所有源代码到 /app/src
+COPY src/ /app/src
 
 ###################################
 # Stage 2: Distroless
 ###################################
-# Use a distroless Python image with no shell and minimal footprint
-FROM gcr.io/distroless/python3
+FROM python:3.11-slim
 
-# Set working directory
+# 设置工作目录为 /app
 WORKDIR /app
 
-# Copy the dependencies and source code from the builder stage
+# 从 builder 阶段复制依赖和源代码
 COPY --from=builder /app/deps /app/deps
-COPY --from=builder /app/src /app
+COPY --from=builder /app/src /app/src
 
-# Set PYTHONPATH to include the deps directory
+# 设置环境变量和 PYTHONPATH
 ENV PYTHONPATH=/app/deps
+EXPOSE 8080
 
-# Expose the port your Flask app runs on (if needed)
-ENV PORT=8080
-
-# Command to run your Flask application
-CMD ["app.py"]
+# 启动 Flask 应用
+CMD ["python3", "/app/src/app.py"]

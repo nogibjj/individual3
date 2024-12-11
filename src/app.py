@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 from flask import Flask, redirect, render_template, request, url_for, session
 from main import calculate_target_calories_and_duration
 
@@ -18,6 +20,9 @@ def home():
     )
     return render_template("home.html", message=message)
 
+@app.route("/health")
+def health_check():
+    return "OK"
 
 # Input route
 @app.route("/input", methods=["GET", "POST"])
@@ -90,4 +95,5 @@ def validate_data(data):
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8080, debug=True)
+    # app.run(host="0.0.0.0", port=8080, debug=True)
+    app.run(host="0.0.0.0", port=8080)
