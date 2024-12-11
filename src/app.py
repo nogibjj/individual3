@@ -11,6 +11,7 @@ app.secret_key = "haobo.yuan@duke.edu"
 result_duration = 45  # min
 result_pace = [10, 0]  # min:sec
 
+
 # Home route
 @app.route("/")
 def home():
@@ -24,7 +25,6 @@ def home():
 @app.route("/health")
 def health_check():
     return "OK"
-
 
 # Input route
 @app.route("/input", methods=["GET", "POST"])
@@ -55,6 +55,7 @@ def input_data():
         except Exception as e:
             return render_template("input.html", error_message=e)
     return render_template("input.html")
+
 
 # Result route
 @app.route("/result")
