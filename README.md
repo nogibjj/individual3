@@ -4,15 +4,21 @@
 ![Format Code](https://github.com/haobo-yuan/IDS706-FinalProject/actions/workflows/format.yml/badge.svg)
 [![Locust Performance Test](https://github.com/haobo-yuan/IDS706-FinalProject/actions/workflows/locust.yml/badge.svg)](https://github.com/haobo-yuan/IDS706-FinalProject/actions/workflows/locust.yml)
 
-# IDS706 Final Project
+# [Jogging Weight Loss Guide](https://nzcfuqgcka.us-east-2.awsapprunner.com)
 
 * Contributors: Haobo Yuan, Jiaxin Gao, Xiangyu Wang, Su Zhang
+* Deployed Application: https://nzcfuqgcka.us-east-2.awsapprunner.com
 
-## Jogging Session Calculator Microservice
+## Introduction
 
 This project implements a microservice using Flask to help users calculate their expected calories burned per jogging session, the duration of jogging sessions, and the estimated MET (Metabolic Equivalent of Task) level based on user input. The microservice interfaces with a data pipeline and provides detailed, personalized fitness insights.
 
+## Project Roadmap
+
+![Project Roadmap](readme_components/drawio.png)
+
 ## Quick View
+
 Home Page:
 ![Home Screenshot](readme_components/Home.png)
 
@@ -21,7 +27,6 @@ Input Page:
 
 Output Page:
 ![Output Screenshot](readme_components/Result.png)
-
 
 ## Features
 
@@ -79,18 +84,6 @@ The application requires the following inputs from the user:
 
 ```
 
-## Project Roadmap
-
-![Project Roadmap](readme_components/drawio.png)
-
-## Running the Application locally
-
-```bash
-git clone https://github.com/haobo-yuan/IDS706-FinalProject.git
-cd IDS706-FinalProject
-pip install -r requirements.txt
-python src/app.py
-```
 ---
 
 ## Functions in `main.py`
@@ -121,6 +114,14 @@ python src/app.py
 
 ---
 
+## Running the Application locally
+
+```bash
+git clone https://github.com/haobo-yuan/IDS706-FinalProject.git
+cd IDS706-FinalProject
+pip install -r requirements.txt
+python src/app.py
+```
 
 ## Testing
 
@@ -178,7 +179,7 @@ Aiming to the service provided by app.py, locust the core function to execute th
 
 The Report could be checked [HERE](readme_components/Locust.pdf). 
 
-# Project Limitations and Potential Areas of Improvement
+## Project Limitations and Potential Areas of Improvement
 
 ### Limitations
 The current version of the **Jogging Session Calculator Microservice** provides basic functionality for estimating calories burned, jogging duration, and MET levels, but it has several limitations that could impact its utility and user satisfaction:
