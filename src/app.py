@@ -3,13 +3,13 @@
 from flask import Flask, redirect, render_template, request, url_for, session
 from main import calculate_target_calories_and_duration
 
+
 app = Flask(__name__)
 app.secret_key = "haobo.yuan@duke.edu"
 
 # Global variables
 result_duration = 45  # min
 result_pace = [10, 0]  # min:sec
-
 
 # Home route
 @app.route("/")
@@ -20,9 +20,11 @@ def home():
     )
     return render_template("home.html", message=message)
 
+
 @app.route("/health")
 def health_check():
     return "OK"
+
 
 # Input route
 @app.route("/input", methods=["GET", "POST"])
@@ -53,7 +55,6 @@ def input_data():
         except Exception as e:
             return render_template("input.html", error_message=e)
     return render_template("input.html")
-
 
 # Result route
 @app.route("/result")
