@@ -217,3 +217,13 @@ To address these limitations and enhance user experience, the following improvem
 - **Enable Progress Tracking**: Introduce functionality to allow users to log ongoing progress and receive updated recommendations based on their performance and evolving fitness levels.
 - **Integrate with Health Ecosystems**: Develop APIs for integration with wearable devices (e.g., Fitbit, Apple Watch) or health apps, enabling automatic tracking of activity metrics such as heart rate and step count.
 - **Enhance Personalization**: Utilize machine learning models to personalize MET and calorie estimations based on detailed physiological profiles, including basal metabolic rate, body composition, and past exercise data.
+
+### AI Applications:
+
+
+### Collaborative Task Allocation
+- **Haobo:** Developed the Flask microservice, containerized with Distroless Docker, and implemented logging.
+- **Jiaxin (Cindy):** Handled data processing, implemented the machine learning model, and demo video editing.
+- **Su (Sue):** Assisted backend development, organized README, and handled CI/CD implementation.
+- **Xiangyu (Samantha):** Managed AWS deployment with Terraform and conducted Locust performance testing.
+
