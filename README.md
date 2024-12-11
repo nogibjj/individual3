@@ -47,8 +47,6 @@ The application requires the following inputs from the user:
 - **`exercise_intensity`**: Jogging intensity (scale of 1–10).
 - **`gender`**: User's gender (`'Male'` or `'Female'`).
 
----
-
 ## Project Structure
 
 ```
@@ -84,7 +82,11 @@ The application requires the following inputs from the user:
 
 ```
 
----
+## Dataset
+
+We use the dataset from [Kaggle](https://www.kaggle.com/uciml/exercise-calories-dataset) to do the analysis and modeling.
+
+![Kaggle Screenshot](readme_components/dataset_from_kaggle.png)
 
 ## Functions in `main.py`
 
@@ -158,8 +160,7 @@ pytest
    ```bash
    make all
    ```
-
-
+   
 ## Containerization with Distroless
 
 ```bash
