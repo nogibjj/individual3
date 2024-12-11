@@ -19,7 +19,7 @@ This project implements a microservice using Flask to help users calculate their
 
 ## Quick View
 
-Home Page:
+Home Page: https://nzcfuqgcka.us-east-2.awsapprunner.com/ 
 ![Home Screenshot](readme_components/Home.png)
 
 Input Page:
@@ -177,7 +177,27 @@ docker build successfully:
 Aiming to the service provided by app.py, locust the core function to execute the performance test. 
 <img width="1375" alt="image" src="https://github.com/user-attachments/assets/9fc99c03-60cf-492a-b4af-bca86405cc54">
 
+Locust is used to assess the performance of a web application hosted on http://localhost:8080. The test was structured to simulate interactions with three endpoints: /, /input, and /result. The results revealed critical insights into the application's handling of traffic:
+
+- Request Statistics: The /input and /result endpoints accounted for the bulk of the traffic, each handling over 55,000 requests, while the homepage (/) received around 18,500 requests. Despite the high volume, response times were impressively low, with averages of 9.72 ms for /, 15.88 ms for /input, and 6.05 ms for /result. The peak RPS for /input and /result exceeded 110, demonstrating the application's capacity to process substantial traffic efficiently.
+
+- Response Time Distribution: A deeper look at response times showed that the majority of requests were processed within single-digit milliseconds. 
+
+- Task Distribution: The test emphasized tasks related to input submission and result retrieval, which made up 75% of the simulated user activities. The remaining 25% focused on homepage interactions.
+  
 The Report could be checked [HERE](readme_components/Locust.pdf). 
+
+
+## Deployment of Service
+The integration of Flask, Docker, and AWS creates a streamlined environment for building, containerizing, and deploying web applications. Here’s a concise breakdown of each component:
+
+- Flask: Flask is a lightweight Python web framework that allows developers to quickly build web applications and APIs. Its minimalistic design and modularity make it a popular choice for scalable projects.
+
+- Docker:Docker enables the packaging of applications and their dependencies into lightweight, portable containers. This ensures consistency across development, testing, and production environments.
+
+- AWS:AWS offers robust cloud infrastructure for hosting applications. Services like Elastic Container Registry (ECR) and App Runner allow seamless deployment and management of containerized applications, providing scalability, reliability, and monitoring capabilities.
+
+When combined, Flask serves as the application layer, Docker ensures portability, and AWS provides the deployment platform, resulting in a flexible and powerful deployment pipeline.The service could be visited by: https://nzcfuqgcka.us-east-2.awsapprunner.com/
 
 ## Project Limitations and Potential Areas of Improvement
 
