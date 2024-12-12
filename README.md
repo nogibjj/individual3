@@ -8,6 +8,7 @@
 
 * Contributors: Haobo Yuan, Jiaxin Gao, Xiangyu Wang, Su Zhang
 * Deployed Application: https://nzcfuqgcka.us-east-2.awsapprunner.com
+* Refered: https://github.com/haobo-yuan/IDS706-FinalProject 
 
 ## Introduction
 
